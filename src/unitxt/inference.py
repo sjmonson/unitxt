@@ -320,6 +320,9 @@ class OpenAiInferenceEngine(
     def prepare(self):
         from openai import OpenAI
 
+        base_url_env_var_name = "OPENAI_API_URL"
+        base_url = os.environ.get(base_url_env_var_name)
+
         api_key_env_var_name = "OPENAI_API_KEY"
         api_key = os.environ.get(api_key_env_var_name)
         assert api_key is not None, (
@@ -327,7 +330,7 @@ class OpenAiInferenceEngine(
             f" Please set the environment param '{api_key_env_var_name}'."
         )
 
-        self.client = OpenAI(api_key=api_key)
+        self.client = OpenAI(api_key=api_key, base_url=base_url)
 
         self._set_inference_parameters()
 
