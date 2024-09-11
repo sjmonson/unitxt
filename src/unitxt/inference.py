@@ -349,7 +349,7 @@ class OpenAiInferenceEngine(
                     }
                 ],
                 model=self.model_name,
-                **self.to_dict([OpenAiInferenceEngineParamsMixin]),
+                **self.to_dict([OpenAiInferenceEngineParamsMixin], keep_empty=False),
             )
             output = response.choices[0].message.content
 
@@ -372,7 +372,7 @@ class OpenAiInferenceEngine(
                     }
                 ],
                 model=self.model_name,
-                **self.to_dict([OpenAiInferenceEngineParamsMixin]),
+                **self.to_dict([OpenAiInferenceEngineParamsMixin], keep_empty=False),
             )
             top_logprobs_response = response.choices[0].logprobs.content
             pred_output = [
